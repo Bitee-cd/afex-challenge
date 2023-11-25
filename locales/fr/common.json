@@ -1,0 +1,15 @@
+{
+  "dashboard": "Tableau de bord",
+  "home": "Accueil",
+  "files": "Fichiers",
+  "deadline_project": "Projet de fin de délai",
+  "management": "Gestion",
+  "database": "Base de données",
+  "customer_data": "Données client",
+  "team_data": "Données d'équipe",
+  "invoice_data": "Données de facturation",
+  "settings": "Paramètres",
+  "announcement": "Annonce",
+  "media_assets": "Ressources multimédias",
+  "client_feedback": "Retour client"
+}

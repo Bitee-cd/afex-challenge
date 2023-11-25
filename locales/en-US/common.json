@@ -1,0 +1,15 @@
+{
+  "dashboard": "Dashboard",
+  "home": "Home",
+  "files": "Files",
+  "deadline_project": "Deadline Project",
+  "management": "Management",
+  "database": "Database",
+  "customer_data": "Customer Data",
+  "team_data": "Team Data",
+  "invoice_data": "Invoice Data",
+  "settings": "Settings",
+  "announcement": "Announcement",
+  "media_assets": "Media Assets",
+  "client_feedback": "Client Feedback"
+}

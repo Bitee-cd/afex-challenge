@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* global styles  */
+body {
+  @apply dark:text-text_white text-text_black;
+}
+input {
+  outline: none;
+}
+.bg_pri {
+  @apply bg-bg_pri_light dark:bg-bg_pri_dark/10;
+}
+.bg_sec {
+  @apply bg-white dark:bg-black;
+}
+
+.screen-center {
+  @apply w-[95%] mx-auto;
+}
+
+/* texts  */
+.p_text {
+  @apply text-sm font-normal;
+}
+.h4_text {
+  @apply text-base font-medium;
+}
+.h2_text {
+  @apply text-[26px] font-semibold;
+}
+
+.hide_scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide_scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -14,14 +51,4 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
