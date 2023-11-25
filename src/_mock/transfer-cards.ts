@@ -1,4 +1,4 @@
-import { QuickTransferCardProps } from "@/app/sections/quick-transfer/quick-transfer-card";
+import { QuickTransferCardProps } from "@/sections/quick-transfer/quick-transfer-card";
 
 export const quickTransferCards: QuickTransferCardProps[] = [
   {

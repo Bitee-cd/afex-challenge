@@ -6,7 +6,6 @@ import MessageIcon from "../icon/MessageIcon";
 import SettingsIcon from "../icon/SettingsIcon";
 import NotificationIcon from "../icon/NotificationIcon";
 import Image from "next/image";
-import LanguagePopover from "../language-popover/language-popover";
 import MenuIcon from "@mui/icons-material/Menu";
 import Sidebar from "../sidebar/sidebar";
 import useSidebarToggleStore from "@/utils/states/sidebar-toggle";
