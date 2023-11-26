@@ -10,6 +10,7 @@ import { useTheme } from "next-themes";
 import { colors } from "@/utils/colors";
 import useSidebarToggleStore from "@/utils/states/sidebar-toggle";
 import HeaderWrapper from "../header/header-wrapper";
+import { useEffect } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -17,7 +18,13 @@ interface Props {
 function DashboardLayout({ children }: Props) {
   const toggleSidebar = useSidebarToggleStore((state) => state.toggleSidebar);
   const isSidebarOpen = useSidebarToggleStore((state) => state.isSidebarOpen);
-  const { theme } = useTheme();
+  const { setTheme, theme } = useTheme();
+  //   useEffect(() => {
+  //     console.log(theme);
+  //     if (!theme) {
+  //       setTheme("light");
+  //     }
+  //   }, [theme]);
 
   return (
     <Box
@@ -26,7 +33,7 @@ function DashboardLayout({ children }: Props) {
         display: "flex",
         flexDirection: { xs: "column", lg: "row" },
         backgroundColor:
-          theme === "light" ? colors.bg_pri_light : colors.bg_pri_dark,
+          theme !== "dark" ? colors.bg_pri_light : colors.bg_pri_dark,
       }}
     >
       <HeaderWrapper />
@@ -42,7 +49,7 @@ function DashboardLayout({ children }: Props) {
           ml: { md: `${drawerWidth}px`, lg: 0 },
           marginTop: "64px",
           backgroundColor:
-            theme === "light" ? colors.bg_pri_light : colors.bg_pri_dark,
+            theme !== "dark" ? colors.bg_pri_light : colors.bg_pri_dark,
         }}
       >
         {children}

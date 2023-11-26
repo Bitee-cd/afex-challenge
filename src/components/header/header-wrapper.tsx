@@ -23,7 +23,7 @@ function HeaderWrapper() {
         width: { md: `calc(100% - ${drawerWidth}px)` },
         ml: { md: `${drawerWidth}px` },
         backgroundColor:
-          theme === "light" ? colors.bg_pri_light : colors.bg_pri_dark,
+          theme !== "dark" ? colors.bg_pri_light : colors.bg_pri_dark,
       }}
     >
       <Toolbar>
