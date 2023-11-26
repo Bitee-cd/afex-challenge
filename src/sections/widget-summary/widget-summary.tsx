@@ -51,31 +51,32 @@ function WidgetSummary() {
       </div>
 
       <div className="grid grid-cols-3 justify-between gap-10">
-        {transactionData?.map((item, index) => (
-          <WidgetSummaryCard
-            key={index}
-            amount={formatNumber(item.current)}
-            percentage={calculatePercentageChange(item).percentage}
-            title={t(item.name)}
-            transaction_type={calculatePercentageChange(item).changeType}
-            icon={
-              item.name === "active_users" ? (
-                <UsersIcon />
-              ) : item.name === "transactions" ? (
-                <TransactionIcon />
-              ) : (
-                <CardIcon />
-              )
-            }
-            text_color={
-              item.name === "active_users"
-                ? "text-pri"
-                : item.name === "transactions"
-                ? "text-sec"
-                : "text-ter"
-            }
-          />
-        ))}
+        {transactionData &&
+          transactionData?.map((item, index) => (
+            <WidgetSummaryCard
+              key={index}
+              amount={formatNumber(item.current)}
+              percentage={calculatePercentageChange(item).percentage}
+              title={t(item.name)}
+              transaction_type={calculatePercentageChange(item).changeType}
+              icon={
+                item.name === "active_users" ? (
+                  <UsersIcon />
+                ) : item.name === "transactions" ? (
+                  <TransactionIcon />
+                ) : (
+                  <CardIcon />
+                )
+              }
+              text_color={
+                item.name === "active_users"
+                  ? "text-pri"
+                  : item.name === "transactions"
+                  ? "text-sec"
+                  : "text-ter"
+              }
+            />
+          ))}
       </div>
     </section>
   );

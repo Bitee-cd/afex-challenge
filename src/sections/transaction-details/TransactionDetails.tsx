@@ -18,7 +18,7 @@ function TransactionDetails() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [latestTransactions, setLatestTransactions] =
-    useState<LatestTransactionsDto>();
+    useState<LatestTransactionData[]>();
 
   const apiClient = useApiClient();
   const transactionEndpoint = useTransactionEndpoints(apiClient);
@@ -31,8 +31,7 @@ function TransactionDetails() {
 
       if (isSuccessfulApiResponse(response)) {
         setIsLoading(false);
-        //ts-ignore
-        setLatestTransactions(response);
+        setLatestTransactions(response.data);
       } else {
         setIsLoading(false);
       }
@@ -56,33 +55,37 @@ function TransactionDetails() {
             {isLoading && <CircularProgress size={10} />}
             {latestTransactions === undefined && !isLoading && <p>No data </p>}
           </div>
-          {latestTransactions?.data.map((item, index) => (
-            <div key={index} className="flex justify-between mb-5 items-center">
-              <div className="flex gap-3 items-center">
-                <Image
-                  width={28}
-                  height={28}
-                  alt={item.charged_by.company}
-                  src={item.charged_by.logo}
-                  className="object-contain"
-                />
-                <div className="">
-                  <p className="p_text">{item.charged_by.company}</p>
-                  <p className="text-gray-500 text-xs">
-                    {formatDateString(item.created_at)}
-                  </p>
+          {latestTransactions &&
+            latestTransactions?.map((item, index) => (
+              <div
+                key={index}
+                className="flex justify-between mb-5 items-center"
+              >
+                <div className="flex gap-3 items-center">
+                  <Image
+                    width={28}
+                    height={28}
+                    alt={item.charged_by.company}
+                    src={item.charged_by.logo}
+                    className="object-contain"
+                  />
+                  <div className="">
+                    <p className="p_text">{item.charged_by.company}</p>
+                    <p className="text-gray-500 text-xs">
+                      {formatDateString(item.created_at)}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className={`p ${
+                    item.charge.type === "debit" ? "text-debit" : "text-credit"
+                  }`}
+                >
+                  {item.charge.type === "debit" ? "- " : "+ "}{" "}
+                  {item.charge.amount}
                 </div>
               </div>
-              <div
-                className={`p ${
-                  item.charge.type === "debit" ? "text-debit" : "text-credit"
-                }`}
-              >
-                {item.charge.type === "debit" ? "- " : "+ "}{" "}
-                {item.charge.amount}
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </section>

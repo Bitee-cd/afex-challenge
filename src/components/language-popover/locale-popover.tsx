@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -27,13 +26,12 @@ const LocalePopover: React.FC = () => {
     <Link href={router.asPath} locale={targetLocale}>
       <div className="flex gap-1 font-[400] items-center cursor-pointer">
         <div className="w-[22px] h-[15px] lg:h-[20px]">
-          <Image
+          <img
             alt={label}
             className="w-full h-full"
             src={flagSrc}
-            // srcSet={`${flagSrc} 2x, ${flagSrc} 3x`}
-            height={20}
-            width={20}
+            srcSet={`${flagSrc} 2x, ${flagSrc} 3x`}
+            height="20"
           />
         </div>
         <p className="uppercase">{label}</p>
