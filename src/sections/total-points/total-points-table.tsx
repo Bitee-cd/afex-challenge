@@ -39,10 +39,15 @@ const TotalPointsTable: React.FC<TotalPointsTableProps> = ({ data }) => {
           {headerGroups.map((headerGroup) => (
             <tr
               {...headerGroup.getHeaderGroupProps()}
+              key={headerGroup.id}
               className="h4_text border-b border-b-text_black"
             >
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} className="text-start">
+              {headerGroup.headers.map((column, index) => (
+                <th
+                  {...column.getHeaderProps()}
+                  className="text-start"
+                  key={index}
+                >
                   {column.render("Header")}
                 </th>
               ))}
@@ -57,8 +62,12 @@ const TotalPointsTable: React.FC<TotalPointsTableProps> = ({ data }) => {
                 key={row.id}
                 className="p_text text-text_gray border-b border-b-text_gray"
               >
-                {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()} data-cell={cell.column.Header}>
+                {row.cells.map((cell, index) => (
+                  <td
+                    {...cell.getCellProps()}
+                    data-cell={cell.column.Header}
+                    key={index}
+                  >
                     {cell.render("Cell")}
                   </td>
                 ))}
