@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import QuickTransferCard from "./quick-transfer-card";
 import { quickTransferCards } from "@/_mock/transfer-cards";
 import useTranslation from "next-translate/useTranslation";
 
 function QuickTransfer() {
   const { t } = useTranslation("home");
+
   return (
     <section className="bg_sec overflow-hidden">
       <div className="gap-5 rounded-[12px] p-5">

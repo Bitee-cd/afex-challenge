@@ -10,20 +10,7 @@ export interface TransactionOverViewData {
   last_month: number;
 }
 
-export interface LatestTransactionsDto {
-  created_at: Date;
-  charged_by: {
-    company: string;
-    logo: string;
-  };
-  charge: {
-    amount: number;
-    currency: {
-      code: string;
-      sign: string;
-    };
-    type: "credit" | "debit";
-  };
+export interface LatestTransactionsDto extends BaseApiResponse {
   data: LatestTransactionData[];
 }
 
@@ -42,20 +29,7 @@ export interface LatestTransactionData {
     type: "credit" | "debit";
   };
 }
-export interface PayoutLogsDto {
-  created_at: Date;
-  charged_by: {
-    company: string;
-    logo: string;
-  };
-  charge: {
-    amount: number;
-    currency: {
-      code: string;
-      sign: string;
-    };
-    type: "credit" | "debit";
-  };
+export interface PayoutLogsDto extends BaseApiResponse {
   data: PayoutLogsData[];
 }
 
@@ -63,7 +37,4 @@ export interface PayoutLogsData {
   date: string;
   salary_paid: number;
   cash_bond_bought: number;
-}
-interface TransactionType {
-  type: "credit" | "debit";
 }

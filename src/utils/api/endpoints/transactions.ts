@@ -12,30 +12,27 @@ import {
 
 const useTransactionEndpoints = (apiClient: AxiosInstance) => {
   const baseUrl = "/transactions";
-  const fetchTransactionOverview = async (): Promise<
-    ApiDataResponse<TransactionOverviewDto>
-  > => {
-    try {
-      const response = await apiClient.get<
-        ApiDataResponse<TransactionOverviewDto>
-      >(`${baseUrl}/overview`);
-      return response.data;
-    } catch (error) {
-      // Handle Error
-      //   return extractErrorMessageFromAxiosErrorV2(error);
-      console.error("Error fetching data:", error);
-      throw error;
-    }
-  };
+  const fetchTransactionOverview =
+    async (): Promise<TransactionOverviewDto> => {
+      try {
+        const response = await apiClient.get<
+          ApiDataResponse<TransactionOverviewDto>
+        >(`${baseUrl}/overview`);
+        return response.data.data;
+      } catch (error) {
+        // Handle Error
+        //   return extractErrorMessageFromAxiosErrorV2(error);
+        console.error("Error fetching data:", error);
+        throw error;
+      }
+    };
 
-  const fetchLatestTransactions = async (): Promise<
-    ApiDataResponse<LatestTransactionsDto>
-  > => {
+  const fetchLatestTransactions = async (): Promise<LatestTransactionsDto> => {
     try {
       const response = await apiClient.get<
         ApiDataResponse<LatestTransactionsDto>
       >(`${baseUrl}/latest`);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       // Handle Error
       //   return extractErrorMessageFromAxiosErrorV2(error);
@@ -43,14 +40,12 @@ const useTransactionEndpoints = (apiClient: AxiosInstance) => {
       throw error;
     }
   };
-  const fetchPayOutLogs = async (): Promise<
-    ApiError | ApiDataResponse<PayoutLogsDto>
-  > => {
+  const fetchPayOutLogs = async (): Promise<PayoutLogsDto> => {
     try {
       const response = await apiClient.get<ApiDataResponse<PayoutLogsDto>>(
         `${baseUrl}/payout-logs`
       );
-      return response.data;
+      return response.data.data;
     } catch (error) {
       // Handle Error
       //   return extractErrorMessageFromAxiosErrorV2(error);

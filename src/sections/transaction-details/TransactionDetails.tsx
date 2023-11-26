@@ -2,7 +2,10 @@
 import React, { useEffect, useState } from "react";
 
 import { CircularProgress } from "@mui/material";
-import { LatestTransactionData } from "@/utils/api/types/transactions";
+import {
+  LatestTransactionData,
+  LatestTransactionsDto,
+} from "@/utils/api/types/transactions";
 import useApiClient from "@/utils/api/api";
 import useTransactionEndpoints from "@/utils/api/endpoints/transactions";
 import { isSuccessfulApiResponse } from "@/utils/api/error";
@@ -15,7 +18,7 @@ function TransactionDetails() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [latestTransactions, setLatestTransactions] =
-    useState<LatestTransactionData[]>();
+    useState<LatestTransactionsDto>();
 
   const apiClient = useApiClient();
   const transactionEndpoint = useTransactionEndpoints(apiClient);
@@ -29,7 +32,7 @@ function TransactionDetails() {
       if (isSuccessfulApiResponse(response)) {
         setIsLoading(false);
         //ts-ignore
-        setLatestTransactions(response.data);
+        setLatestTransactions(response);
       } else {
         setIsLoading(false);
       }
@@ -53,7 +56,7 @@ function TransactionDetails() {
             {isLoading && <CircularProgress size={10} />}
             {latestTransactions === undefined && !isLoading && <p>No data </p>}
           </div>
-          {latestTransactions?.map((item, index) => (
+          {latestTransactions?.data.map((item, index) => (
             <div key={index} className="flex justify-between mb-5 items-center">
               <div className="flex gap-3 items-center">
                 <Image
