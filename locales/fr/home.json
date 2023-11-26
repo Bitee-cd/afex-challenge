@@ -8,5 +8,9 @@
   "credit_card": "Carte de crédit",
   "debit_card": "Carte de débit",
   "activity_charts": "Graphiques d'activité",
-  "total_points": "Points totaux"
+  "total_points": "Points totaux",
+  "actual": "Réel",
+  "actual_value": "Valeur réelle",
+  "forecast": "Prévision",
+  "variance": "Écart"
 }

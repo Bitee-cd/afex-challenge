@@ -1,17 +1,17 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
-import ReactApexChart from "react-apexcharts";
-
 import { useTheme } from "next-themes";
 import { ApexOptions } from "apexcharts";
 import { colors } from "@/utils/colors";
+import dynamic from "next/dynamic";
 
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 // chart options
 const areaChartOptions: ApexOptions = {
   chart: {
     height: 450,
-    type: "area",
+    type: "line",
     toolbar: {
       show: false,
     },
@@ -75,7 +75,7 @@ const IncomeAreaChart: React.FC = () => {
           show: true,
           color: colors.border,
         },
-        tickAmount: 11,
+        tickAmount: 3,
       },
       yaxis: {
         labels: {
@@ -107,12 +107,12 @@ const IncomeAreaChart: React.FC = () => {
 
   return (
     <div className="w-full">
-      {/* <ReactApexChart
+      <ReactApexChart
         options={options}
         series={series}
-        type="area"
+        type="line"
         height={450}
-      /> */}
+      />
     </div>
   );
 };

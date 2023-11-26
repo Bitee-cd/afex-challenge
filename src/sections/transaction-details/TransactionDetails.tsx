@@ -8,6 +8,7 @@ import TransactIcon from "@/components/icon/TransactIcon";
 import { LatestTransactionData } from "@/utils/api/types/transactions";
 import LoadingIndicator from "@/components/loading-indicator/loading-indicator";
 import TransactionItem from "./transaction-item";
+import CardWrapper from "@/components/card-wrapper/card-wrapper";
 
 function TransactionDetails() {
   const { t } = useTranslation("home");
@@ -38,7 +39,7 @@ function TransactionDetails() {
   }, []);
 
   return (
-    <section className="bg_sec p-5">
+    <CardWrapper className="p-5">
       <div className="items-center gap-5 rounded-[12px]">
         <IconHeading text={t("transaction_details")} icon={<TransactIcon />} />
         <div className="flex flex-col gap-5 mt-5">
@@ -50,7 +51,7 @@ function TransactionDetails() {
             ))}
         </div>
       </div>
-    </section>
+    </CardWrapper>
   );
 }
 

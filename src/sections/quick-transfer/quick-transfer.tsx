@@ -5,15 +5,16 @@ import useTranslation from "next-translate/useTranslation";
 import IconHeading from "@/components/icon-heading/icon-heading";
 import TransactIcon from "@/components/icon/TransactIcon";
 import WalletIcon from "@/components/icon/WalletIcon";
+import CardWrapper from "@/components/card-wrapper/card-wrapper";
 
 function QuickTransfer() {
   const { t } = useTranslation("home");
 
   return (
-    <section className="bg_sec overflow-hidden">
+    <CardWrapper>
       <div className="gap-5 rounded-[12px] p-5">
         <IconHeading text={t("quick_transfer")} icon={<WalletIcon />} />
-        <div className="flex  flex-row pl-5 gap-3 my-5 overflow-x-auto hide_scrollbar rounded-xl">
+        <div className="flex  flex-row px-1 gap-3 my-5 overflow-x-auto hide_scrollbar rounded-xl">
           {quickTransferCards.map((item, index) => (
             <QuickTransferCard
               key={index}
@@ -24,7 +25,7 @@ function QuickTransfer() {
           ))}
         </div>
       </div>
-    </section>
+    </CardWrapper>
   );
 }
 

@@ -21,6 +21,7 @@ import {
   SuppliesForecastDto,
 } from "@/utils/api/types/supplies";
 import TotalPointsTable from "./total-points-table";
+import CardWrapper from "@/components/card-wrapper/card-wrapper";
 
 function TotalPoints() {
   const { t } = useTranslation("home");
@@ -54,7 +55,7 @@ function TotalPoints() {
   }, []);
 
   return (
-    <section className="bg_sec p-5">
+    <CardWrapper className="p-5">
       <div className="items-center gap-5 rounded-[12px]">
         <IconHeading text={t("total_points")} icon={<CoinIcon />} />
         <div className="flex flex-col gap-5">
@@ -65,7 +66,7 @@ function TotalPoints() {
           {suppliesForecast && <TotalPointsTable data={suppliesForecast} />}
         </div>
       </div>
-    </section>
+    </CardWrapper>
   );
 }
 

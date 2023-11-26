@@ -51,13 +51,13 @@ function WidgetSummary() {
     cards_issued: <CardIcon />,
   };
   return (
-    <section className="">
+    <div className="">
       <div className="flex items-center justify-center">
         {isLoading && <CircularProgress size={10} />}
         {!isLoading && transactionData === undefined && <p>No data</p>}
       </div>
 
-      <div className="grid lg:grid-cols-3 justify-between gap-10">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 justify-between gap-10">
         {transactionData &&
           transactionData?.map((item, index) => (
             <WidgetSummaryCard
@@ -71,7 +71,7 @@ function WidgetSummary() {
             />
           ))}
       </div>
-    </section>
+    </div>
   );
 }
 

@@ -1,9 +1,11 @@
 import WidgetSummary from "@/sections/widget-summary/widget-summary";
-import IncomeAreaChart from "@/components/line-graph/LineGraph";
+
 import TransactionDetails from "@/sections/transaction-details/TransactionDetails";
 import QuickTransfer from "@/sections/quick-transfer/quick-transfer";
 import RootLayout from "@/components/layout/layout";
 import TotalPoints from "@/sections/total-points/total-points";
+import ActivityCharts from "@/components/charts/activity-chart/activity-chart";
+import IncomeAreaChart from "@/components/charts/line-graph/line-graph";
 
 export default function Home() {
   return (
@@ -21,7 +23,7 @@ export default function Home() {
           </div>
         </section>
         <section className="lg:grid  lg:grid-cols-4 gap-10 my-10">
-          <div className=""></div>
+          <div className="">{<ActivityCharts />}</div>
           <div className="lg:col-span-3">
             <TotalPoints />
           </div>

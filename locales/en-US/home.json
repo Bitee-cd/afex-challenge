@@ -8,5 +8,12 @@
   "credit_card": "Credit Card",
   "debit_card": "Debit Card",
   "activity_charts": "Activity Charts",
-  "total_points": "Total Points"
+  "total_points": "Total Points",
+  "title": "Activity Charts Total Points",
+  "activityCharts": "Activity Charts",
+  "totalPoints": "Total Points",
+  "actual": "Actual",
+  "actual_value": "Actual Value",
+  "forecast": "Forecast",
+  "variance": "Variance"
 }
