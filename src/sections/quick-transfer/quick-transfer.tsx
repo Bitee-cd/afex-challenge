@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import QuickTransferCard from "./quick-transfer-card";
 import { quickTransferCards } from "@/_mock/transfer-cards";
 import useTranslation from "next-translate/useTranslation";
+import IconHeading from "@/components/icon-heading/icon-heading";
+import TransactIcon from "@/components/icon/TransactIcon";
+import WalletIcon from "@/components/icon/WalletIcon";
 
 function QuickTransfer() {
   const { t } = useTranslation("home");
@@ -9,9 +12,7 @@ function QuickTransfer() {
   return (
     <section className="bg_sec overflow-hidden">
       <div className="gap-5 rounded-[12px] p-5">
-        <p className="h4_text border-b border-b-border_gray w-full">
-          {t("quick_transfer")}
-        </p>
+        <IconHeading text={t("quick_transfer")} icon={<WalletIcon />} />
         <div className="flex  flex-row pl-5 gap-3 my-5 overflow-x-auto hide_scrollbar rounded-xl">
           {quickTransferCards.map((item, index) => (
             <QuickTransferCard

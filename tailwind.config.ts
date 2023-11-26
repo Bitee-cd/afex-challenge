@@ -23,6 +23,7 @@ const config: Config = {
         text_white: "#CCCCCC",
         credit: "#4EEA7A",
         debit: "#D62C2C",
+        text_gray: "#A8A8A8",
       },
     },
   },

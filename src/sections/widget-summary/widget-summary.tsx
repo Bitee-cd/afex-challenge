@@ -13,6 +13,7 @@ import UsersIcon from "@/components/icon/UsersIcon";
 import TransactionIcon from "@/components/icon/TransactionIcon";
 import CardIcon from "@/components/icon/CardIcon";
 import useTranslation from "next-translate/useTranslation";
+import { colorMap } from "@/utils/text-color";
 
 function WidgetSummary() {
   const { t } = useTranslation("home");
@@ -43,6 +44,12 @@ function WidgetSummary() {
   useEffect(() => {
     getTransactionsOverview();
   }, []);
+
+  const iconMap = {
+    active_users: <UsersIcon />,
+    transactions: <TransactionIcon />,
+    cards_issued: <CardIcon />,
+  };
   return (
     <section className="">
       <div className="flex items-center justify-center">
@@ -50,7 +57,7 @@ function WidgetSummary() {
         {!isLoading && transactionData === undefined && <p>No data</p>}
       </div>
 
-      <div className="grid grid-cols-3 justify-between gap-10">
+      <div className="grid lg:grid-cols-3 justify-between gap-10">
         {transactionData &&
           transactionData?.map((item, index) => (
             <WidgetSummaryCard
@@ -59,22 +66,8 @@ function WidgetSummary() {
               percentage={calculatePercentageChange(item).percentage}
               title={t(item.name)}
               transaction_type={calculatePercentageChange(item).changeType}
-              icon={
-                item.name === "active_users" ? (
-                  <UsersIcon />
-                ) : item.name === "transactions" ? (
-                  <TransactionIcon />
-                ) : (
-                  <CardIcon />
-                )
-              }
-              text_color={
-                item.name === "active_users"
-                  ? "text-pri"
-                  : item.name === "transactions"
-                  ? "text-sec"
-                  : "text-ter"
-              }
+              icon={iconMap[item.name]}
+              text_color={colorMap[item.name]}
             />
           ))}
       </div>

@@ -10,19 +10,12 @@ export interface SuppliesForecastData {
   q4_variance: number;
 }
 
-export interface SuppliesForecastDto extends BaseApiResponse {
-  created_at: Date;
-  charged_by: {
-    company: string;
-    logo: string;
-  };
-  charge: {
-    amount: number;
-    currency: {
-      code: string;
-      sign: string;
-    };
-    type: "credit" | "debit";
-  };
+export interface SuppliesForecastDto {
+  message: string;
+  current_page: number;
+  page_size: number;
+  next_page_url: string | null;
+  prev_page_url: string | null;
+  count: number;
   data: SuppliesForecastData[];
 }

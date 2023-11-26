@@ -1,20 +1,16 @@
 import { AxiosInstance } from "axios";
-import {
-  ApiDataResponse,
-  ApiError,
-  ApiSuccessResponseDto,
-} from "../types/response";
-import { SuppliesForecastDto } from "../types/supplies";
+import { ApiDataResponse, BaseApiResponse } from "../types/response";
+import { SuppliesForecastData, SuppliesForecastDto } from "../types/supplies";
 
 const useSuppliesEndpoints = (apiClient: AxiosInstance) => {
   const baseUrl = "/supplies";
 
   const fetchSuppliesForecast = async (): Promise<
-    ApiDataResponse<SuppliesForecastDto>
+    BaseApiResponse<SuppliesForecastData[]>
   > => {
     try {
       const response = await apiClient.get<
-        ApiDataResponse<SuppliesForecastDto>
+        BaseApiResponse<SuppliesForecastData[]>
       >(`${baseUrl}/forecast`);
       return response.data;
     } catch (error) {

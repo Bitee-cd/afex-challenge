@@ -1,17 +1,19 @@
 import { BaseApiResponse } from "./response";
 
-export interface TransactionOverviewDto extends BaseApiResponse {
-  data: TransactionOverViewData[];
-}
-
 export interface TransactionOverViewData {
   name: "active_users" | "transactions" | "cards_issued";
   current: number;
   last_month: number;
 }
 
-export interface LatestTransactionsDto extends BaseApiResponse {
+export interface LatestTransactionsDto {
   data: LatestTransactionData[];
+  message: string;
+  current_page: number;
+  page_size: number;
+  next_page_url: string | null;
+  prev_page_url: string | null;
+  count: number;
 }
 
 export interface LatestTransactionData {
@@ -28,9 +30,6 @@ export interface LatestTransactionData {
     };
     type: "credit" | "debit";
   };
-}
-export interface PayoutLogsDto extends BaseApiResponse {
-  data: PayoutLogsData[];
 }
 
 export interface PayoutLogsData {
