@@ -1,14 +1,16 @@
 import React from "react";
 import Image from "next/image";
-import { formatDateString } from "@/utils/strings";
+
 import { LatestTransactionData } from "@/utils/api/types/transactions";
 import { currency } from "@/utils/currency";
+import useStringFormatter from "@/utils/strings";
 
 interface TransactionItemProps {
   item: LatestTransactionData;
 }
 function TransactionItem(props: TransactionItemProps) {
   const { charged_by, created_at, charge } = props.item;
+  const formatDateString = useStringFormatter().formatDateString;
   return (
     <div className="flex justify-between mb-5 items-center">
       <div className="flex gap-3 items-center">

@@ -1,73 +1,42 @@
-"use client";
-import React, { useEffect, useState } from "react";
-
-import { CircularProgress, TableContainer } from "@mui/material";
-import {
-  LatestTransactionData,
-  LatestTransactionsDto,
-} from "@/utils/api/types/transactions";
-import useApiClient from "@/utils/api/api";
-import useTransactionEndpoints from "@/utils/api/endpoints/transactions";
-import { isSuccessfulApiResponse } from "@/utils/api/error";
-import Image from "next/image";
-import { formatDateString } from "@/utils/strings";
+import React from "react";
 import useTranslation from "next-translate/useTranslation";
-import IconHeading from "@/components/icon-heading/icon-heading";
-import TransactIcon from "@/components/icon/TransactIcon";
-import CoinIcon from "@/components/icon/CoinIcon";
-import useSuppliesEndpoints from "@/utils/api/endpoints/supplies";
-import {
-  SuppliesForecastData,
-  SuppliesForecastDto,
-} from "@/utils/api/types/supplies";
-import TotalPointsTable from "./total-points-table";
 import CardWrapper from "@/components/card-wrapper/card-wrapper";
+import IconHeading from "@/components/icon-heading/icon-heading";
+import CoinIcon from "@/components/icon/CoinIcon";
+import TotalPointsTable from "./total-points-table";
+import { useQuery } from "react-query";
+import useQuerySuppliesEndpoints from "@/utils/api/endpoints/querysupplies";
+import LoadingIndicator from "@/components/loading-indicator/loading-indicator";
 
-function TotalPoints() {
+const TotalPoints: React.FC = () => {
   const { t } = useTranslation("home");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [suppliesForecast, setSuppliesForecast] = useState<
-    SuppliesForecastData[] | null
-  >(null);
-  const apiClient = useApiClient();
-  const suppliesEndpoint = useSuppliesEndpoints(apiClient);
+  const suppliesEndpoint = useQuerySuppliesEndpoints();
+  const {
+    data: suppliesForecast,
+    error: suppliesForecastError,
+    isLoading: isSuppliesTransactionsLoading,
+  } = useQuery("suppliesForecast", suppliesEndpoint.fetchSuppliesForecast);
 
-  const getSuppliesForecast = async () => {
-    setIsLoading(true);
+  if (isSuppliesTransactionsLoading) {
+    return <LoadingIndicator />;
+  }
 
-    try {
-      const response = await suppliesEndpoint.fetchSuppliesForecast();
-
-      if (response) {
-        setIsLoading(false);
-        setSuppliesForecast(response.data);
-      } else {
-        setIsLoading(false);
-      }
-    } catch (error) {
-      console.error("Error fetching transaction overview:", error);
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getSuppliesForecast();
-  }, []);
-
+  if (suppliesForecastError) {
+    return <div>An error occurred:</div>;
+  }
+  console.log(suppliesForecast?.data);
   return (
     <CardWrapper className="p-5">
       <div className="items-center gap-5 rounded-[12px]">
         <IconHeading text={t("total_points")} icon={<CoinIcon />} />
         <div className="flex flex-col gap-5">
-          <div className="flex items-center justify-center">
-            {isLoading && <CircularProgress size={10} />}
-            {!suppliesForecast && !isLoading && <p>No data </p>}
-          </div>
-          {suppliesForecast && <TotalPointsTable data={suppliesForecast} />}
+          {suppliesForecast && (
+            <TotalPointsTable data={suppliesForecast.data} />
+          )}
         </div>
       </div>
     </CardWrapper>
   );
-}
+};
 
 export default TotalPoints;

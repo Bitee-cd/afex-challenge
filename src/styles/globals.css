@@ -40,7 +40,7 @@ input {
   scrollbar-width: none; /* Firefox */
 }
 
-@media (max-width: 650px) {
+/* @media (max-width: 650px) {
   th {
     display: none;
   }
@@ -59,4 +59,4 @@ input {
     text-transform: capitalize;
     font-weight: 600;
   }
-}
+} */

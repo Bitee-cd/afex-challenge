@@ -6,16 +6,6 @@ import {
 } from "../types/transactions";
 import { BaseApiResponse } from "../types/response";
 
-export interface LatestTransactionsDto {
-  data: LatestTransactionData[];
-  message: string;
-  current_page: number;
-  page_size: number;
-  next_page_url: string | null;
-  prev_page_url: string | null;
-  count: number;
-}
-
 const useTransactionEndpoints = (apiClient: AxiosInstance) => {
   const baseUrl = "/transactions";
   const fetchTransactionOverview = async (): Promise<

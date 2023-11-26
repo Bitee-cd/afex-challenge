@@ -7,11 +7,11 @@ import dynamic from "next/dynamic";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
-// chart options
+
 const areaChartOptions: ApexOptions = {
   chart: {
     height: 450,
-    type: "line",
+    type: "area",
     toolbar: {
       show: false,
     },
@@ -28,9 +28,18 @@ const areaChartOptions: ApexOptions = {
   },
 };
 
-// ==============================|| INCOME AREA CHART ||============================== //
+export interface ChartSeries {
+  name: string;
+  data: number[];
+}
 
-const IncomeAreaChart: React.FC = () => {
+export interface AreaChartProps {
+  series: ChartSeries[];
+  categories: string[];
+  formatter: (value: number) => string;
+}
+
+const AreaChart = ({ series, categories, formatter }: AreaChartProps) => {
   const [options, setOptions] = useState(areaChartOptions);
   const { theme } = useTheme();
 
@@ -39,48 +48,23 @@ const IncomeAreaChart: React.FC = () => {
       ...prevState,
       colors: [colors.ter, colors.sec],
       xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
+        categories: categories,
         labels: {
           style: {
-            colors: [
-              colors.sec,
-              colors.sec,
-              colors.sec,
-              colors.sec,
-              colors.sec,
-              colors.sec,
-              colors.sec,
-              colors.sec,
-              colors.sec,
-              colors.sec,
-              colors.sec,
-              colors.sec,
-            ],
+            colors: colors.sec,
           },
         },
         axisBorder: {
           show: true,
           color: colors.border,
         },
-        tickAmount: 3,
+        tickAmount: 11,
       },
       yaxis: {
         labels: {
+          formatter,
           style: {
-            colors: [colors.icon_dark],
+            colors: [theme === "dark" ? colors.sec : colors.icon_light],
           },
         },
       },
@@ -94,27 +78,16 @@ const IncomeAreaChart: React.FC = () => {
     }));
   }, [theme]);
 
-  const [series, setSeries] = useState([
-    {
-      name: "Salary",
-      data: [32, 86, 28, 115, 48, 210, 136],
-    },
-    {
-      name: "Cash Bond",
-      data: [48, 43, 14, 56, 24, 105, 68],
-    },
-  ]);
-
   return (
     <div className="w-full">
       <ReactApexChart
         options={options}
         series={series}
-        type="line"
+        type="area"
         height={450}
       />
     </div>
   );
 };
 
-export default IncomeAreaChart;
+export default AreaChart;

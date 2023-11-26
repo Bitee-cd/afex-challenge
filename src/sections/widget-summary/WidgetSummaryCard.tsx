@@ -31,7 +31,7 @@ function WidgetSummaryCard(props: WidgetSummaryProps) {
               transaction_type === "credit" ? "text-credit" : "text-debit"
             }`}
           >
-            {percentage}
+            {percentage} %
           </p>
         </div>
       </div>

@@ -34,7 +34,7 @@ const LocalePopover: React.FC = () => {
             height="20"
           />
         </div>
-        <p className="uppercase">{label}</p>
+        <p className="uppercase text-black dark:text-white">{label}</p>
       </div>
     </Link>
   );

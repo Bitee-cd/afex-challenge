@@ -1,8 +1,7 @@
-"use client";
-
 import { useTheme } from "next-themes";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import { colors } from "@/utils/colors";
 
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
@@ -10,7 +9,7 @@ export function ModeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="border rounded-md w-6 h-6 flex items-center justify-center"
+      className="border border-black dark:border-white rounded-md w-6 h-6 flex items-center justify-center"
     >
       <span className="sr-only">Toggle mode</span>
       {theme !== "dark" ? (
@@ -19,7 +18,7 @@ export function ModeToggle() {
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke="currentColor"
+          stroke={colors.icon_dark}
           className="w-4 h-4"
         >
           <path
@@ -34,7 +33,7 @@ export function ModeToggle() {
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke="currentColor"
+          stroke={colors.icon_light}
           className="w-4 h-4"
         >
           <path

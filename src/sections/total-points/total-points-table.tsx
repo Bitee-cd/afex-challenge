@@ -1,5 +1,13 @@
-import { SuppliesForecastData } from "@/utils/api/types/supplies";
+import React from "react";
+import { useQuery } from "react-query";
 import useTranslation from "next-translate/useTranslation";
+import { useTable, Column } from "react-table";
+
+import { SuppliesForecastData } from "@/utils/api/types/supplies";
+import CoinIcon from "@/components/icon/CoinIcon";
+import IconHeading from "@/components/icon-heading/icon-heading";
+import CardWrapper from "@/components/card-wrapper/card-wrapper";
+import useQuerySuppliesEndpoints from "@/utils/api/endpoints/querysupplies";
 
 interface TotalPointsTableProps {
   data: SuppliesForecastData[];
@@ -7,42 +15,60 @@ interface TotalPointsTableProps {
 
 const TotalPointsTable: React.FC<TotalPointsTableProps> = ({ data }) => {
   const { t } = useTranslation("home");
+
+  const columns: Column<SuppliesForecastData>[] = React.useMemo(
+    () => [
+      { Header: t("actual"), accessor: "name" },
+      { Header: t("actual_value"), accessor: "actual_value" },
+      { Header: t("forecast"), accessor: "forecasted_value" },
+      { Header: t("variance"), accessor: "q1_variance" },
+      { Header: t("variance"), accessor: "q2_variance" },
+      { Header: t("variance"), accessor: "q3_variance" },
+      { Header: t("variance"), accessor: "q4_variance" },
+    ],
+    [t]
+  );
+
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns, data });
+
   return (
     <div className="overflow-x-auto">
-      <table cellPadding={12} className="w-full">
+      <table {...getTableProps()} cellPadding={12} className="w-full">
         <thead>
-          <tr className="h4_text border-b border-b-text_black">
-            <th className="text-start" colSpan={2}>
-              {t("actual")}
-            </th>
-            <th className="text-start">{t("actual_value")}</th>
-            <th className="text-start">{t("forecast")}</th>
-            <th className="text-start">{t("variance")}</th>
-            <th className="text-start">{t("variance")}</th>
-            <th className="text-start">{t("variance")}</th>
-            <th className="text-start">{t("variance")}</th>
-          </tr>
-        </thead>
-        <tbody className="py-5">
-          {data.map((row, rowIndex) => (
+          {headerGroups.map((headerGroup) => (
             <tr
-              key={rowIndex}
-              className="p_text text-text_gray border-b border-b-text_gray"
+              {...headerGroup.getHeaderGroupProps()}
+              className="h4_text border-b border-b-text_black"
             >
-              <td data-cell={t("actual")} colSpan={2}>
-                {row.name}
-              </td>
-              <td data-cell={t("actual_value")}>{row.actual_value}</td>
-              <td data-cell={t("forecast")}>{row.forecasted_value}</td>
-              <td data-cell={t("variance")}>{row.q1_variance}</td>
-              <td data-cell={t("variance")}>{row.q2_variance}</td>
-              <td data-cell={t("variance")}>{row.q3_variance}</td>
-              <td data-cell={t("variance")}>{row.q4_variance}</td>
+              {headerGroup.headers.map((column) => (
+                <th {...column.getHeaderProps()} className="text-start">
+                  {column.render("Header")}
+                </th>
+              ))}
             </tr>
           ))}
+        </thead>
+        <tbody {...getTableBodyProps()} className="py-5">
+          {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr
+                key={row.id}
+                className="p_text text-text_gray border-b border-b-text_gray"
+              >
+                {row.cells.map((cell) => (
+                  <td {...cell.getCellProps()} data-cell={cell.column.Header}>
+                    {cell.render("Cell")}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
   );
 };
+
 export default TotalPointsTable;

@@ -10,8 +10,6 @@ import Link from "next/link";
 import BagIcon from "../icon/BagIcon";
 import UserIcon from "../icon/UserIcon";
 import LockIcon from "../icon/LockIcon";
-import CloseIcon from "@mui/icons-material/Close";
-import useSidebarToggleStore from "@/utils/states/sidebar-toggle";
 import { routes } from "@/utils/routes";
 import { colors } from "@/utils/colors";
 import useTranslation from "next-translate/useTranslation";
@@ -19,7 +17,6 @@ import useTranslation from "next-translate/useTranslation";
 function Sidebar() {
   const { t } = useTranslation("common");
   const currentRoute = usePathname();
-  const toggleSideBar = useSidebarToggleStore((state) => state.toggleSidebar);
   const dashboard_menu = [
     {
       text: t("home"),
@@ -180,11 +177,10 @@ function Sidebar() {
       items: customer_data_menu,
     },
   ];
-  const handleClick = () => {};
 
   return (
     <>
-      <nav className="p-5 bg_sec h-screen w-full  border-r-4 border-r-border_gray dark:border-r-gray-700 min-h-screen z-30 absolute lg:sticky top-0 left-0">
+      <nav className="p-5 bg_sec h-full w-full dark:text-white border-r-4 border-r-border_gray dark:border-r-gray-700 min-h-screen z-30 absolute lg:sticky top-0 left-0">
         <div className="mx-auto flex justify-between">
           <Link href={routes["home"]}>
             <Image
@@ -195,10 +191,6 @@ function Sidebar() {
               className="mb-10"
             />
           </Link>
-
-          <div className="lg:hidden" onClick={toggleSideBar}>
-            <CloseIcon />
-          </div>
         </div>
 
         <div className="">

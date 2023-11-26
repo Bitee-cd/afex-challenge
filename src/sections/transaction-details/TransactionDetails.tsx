@@ -9,46 +9,37 @@ import { LatestTransactionData } from "@/utils/api/types/transactions";
 import LoadingIndicator from "@/components/loading-indicator/loading-indicator";
 import TransactionItem from "./transaction-item";
 import CardWrapper from "@/components/card-wrapper/card-wrapper";
+import useQueryTransactionEndpoints from "@/utils/api/endpoints/querytransactions";
+import { useQuery } from "react-query";
 
 function TransactionDetails() {
   const { t } = useTranslation("home");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [latestTransactions, setLatestTransactions] =
-    useState<LatestTransactionData[]>();
+  const transactionEndpoints = useQueryTransactionEndpoints();
 
-  const apiClient = useApiClient();
-  const transactionEndpoint = useTransactionEndpoints(apiClient);
+  const {
+    data: latestTransactionsData,
+    error: latestTransactionsError,
+    isLoading: isLatestTransactionsLoading,
+  } = useQuery(
+    "latestTransactions",
+    transactionEndpoints.fetchLatestTransactions
+  );
+  if (isLatestTransactionsLoading) {
+    return <LoadingIndicator />;
+  }
 
-  const getTransactionsOverview = async () => {
-    setIsLoading(true);
-
-    try {
-      const response = await transactionEndpoint.fetchLatestTransactions();
-      if (isSuccessfulApiResponse(response)) {
-        setLatestTransactions(response.data);
-      }
-    } catch (error) {
-      console.error("Error fetching transaction overview:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getTransactionsOverview();
-  }, []);
+  if (latestTransactionsError) {
+    return <div>An error occurred:</div>;
+  }
 
   return (
     <CardWrapper className="p-5">
       <div className="items-center gap-5 rounded-[12px]">
         <IconHeading text={t("transaction_details")} icon={<TransactIcon />} />
         <div className="flex flex-col gap-5 mt-5">
-          {isLoading && <LoadingIndicator />}
-          {!isLoading && !latestTransactions && <p>No data </p>}
-          {latestTransactions &&
-            latestTransactions.map((item, index) => (
-              <TransactionItem key={index} item={item} />
-            ))}
+          {latestTransactionsData?.data.map((item, index) => (
+            <TransactionItem key={index} item={item} />
+          ))}
         </div>
       </div>
     </CardWrapper>

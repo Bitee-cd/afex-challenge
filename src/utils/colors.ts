@@ -8,4 +8,8 @@ export const colors = {
   green: "#4EEA7A",
   red: "#D62C2C",
   border: "#ECE9F1",
+  bg_pri_light: "#F6F6F6",
+  // bg_pri_dark: "#F6F6F6",
+  bg_pri_dark: "#0C0C0C",
+  bg_black: "#00000",
 };
