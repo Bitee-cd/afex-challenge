@@ -35,7 +35,11 @@ function Header() {
         </div>
       )}
       <div className="flex items-center justify-between screen-center min-h-[60px] lg:min-h-[70px] w-1/3 ">
-        <button className="lg:hidden " onClick={toggleSideBar}>
+        <button
+          className="lg:hidden "
+          onClick={toggleSideBar}
+          aria-label="Toggle Navigation"
+        >
           <MenuIcon />
         </button>
         <div className="flex items-center gap-5 py-2 px-5 bg_sec rounded-lg">
