@@ -36,9 +36,7 @@ function Header() {
       <div className="flex items-center justify-between screen-center ">
         <div
           className={
-            isMediumScreen
-              ? "hidden"
-              : "lg:flex hidden items-center gap-5 py-2 px-2 bg_sec rounded-lg"
+            "lg:flex hidden items-center gap-5 py-2 px-2 bg_sec rounded-lg"
           }
         >
           <SearchIcon />

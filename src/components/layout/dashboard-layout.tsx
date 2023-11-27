@@ -10,7 +10,6 @@ import { useTheme } from "next-themes";
 import { colors } from "@/utils/colors";
 import useSidebarToggleStore from "@/utils/states/sidebar-toggle";
 import HeaderWrapper from "../header/header-wrapper";
-import { useEffect } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -19,6 +18,7 @@ function DashboardLayout({ children }: Props) {
   const toggleSidebar = useSidebarToggleStore((state) => state.toggleSidebar);
   const isSidebarOpen = useSidebarToggleStore((state) => state.isSidebarOpen);
   const { theme } = useTheme();
+
   return (
     <Box
       sx={{
