@@ -113,15 +113,44 @@ const AreaChart = ({ series, categories, formatter }: AreaChartProps) => {
   }, [theme]);
 
   return (
-    <div className="w-full">
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="area"
-        height={450}
-      />
-    </div>
+    <>
+      <div className="w-full">
+        <Duration categories={categories} />
+        <>
+          <ReactApexChart
+            options={options}
+            series={series}
+            type="area"
+            height={450}
+          />
+        </>
+      </div>
+    </>
   );
 };
 
 export default AreaChart;
+interface DurationProps {
+  categories: string[];
+}
+
+const Duration = ({ categories }: DurationProps) => {
+  return (
+    <div>
+      <div className="flex-end flex items-center gap-5 mr-5">
+        <div className="ml-auto p_text text-text_gray text-xs">
+          From
+          <span className="text-black dark:text-white ml-2">
+            {categories[0]}
+          </span>
+        </div>
+        <div className=" p_text text-text_gray text-xs">
+          To
+          <span className="text-black dark:text-white ml-2">
+            {categories[categories.length - 1]}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};

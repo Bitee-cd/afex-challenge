@@ -16,7 +16,7 @@ import { useQuery } from "react-query";
 import LoadingIndicator from "@/components/loading-indicator/loading-indicator";
 import AreaChart, {
   ChartSeries,
-} from "@/components/charts/line-graph/area-chart";
+} from "@/components/charts/area-chart/area-chart";
 
 function PayOutLogsChart() {
   const { t } = useTranslation("home");
