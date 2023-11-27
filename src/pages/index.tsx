@@ -3,10 +3,9 @@ import WidgetSummary from "@/sections/widget-summary/widget-summary";
 import TransactionDetails from "@/sections/transaction-details/TransactionDetails";
 import QuickTransfer from "@/sections/quick-transfer/quick-transfer";
 import RootLayout from "@/components/layout/layout";
-
-import ActivityCharts from "@/components/charts/activity-chart/activity-chart";
 import PayOutLogsChart from "@/sections/payout-logs-chart/payout-logs-chart";
 import TotalPoints from "@/sections/total-points/total-points";
+import ActivityCharts from "@/sections/activity-charts/activity-charts";
 
 export default function Home() {
   return (
@@ -25,7 +24,7 @@ export default function Home() {
         </section>
         <section className="lg:grid  lg:grid-cols-4 gap-10 my-10">
           <div className="">{<ActivityCharts />}</div>
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 mt-10">
             <TotalPoints />
           </div>
         </section>

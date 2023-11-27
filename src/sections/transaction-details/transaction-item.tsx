@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { LatestTransactionData } from "@/utils/api/types/transactions";
 import { currency } from "@/utils/currency";
-import useStringFormatter from "@/utils/strings";
+import useStringFormatter from "@/utils/strings-formatter";
 
 interface TransactionItemProps {
   item: LatestTransactionData;

@@ -7,7 +7,7 @@ interface IconHeadingProps {
 function IconHeading(props: IconHeadingProps) {
   return (
     <div className="flex items-center gap-2 pb-4 border-b w-full border-b-border_gray">
-      {props.icon}
+      <div className="">{props.icon}</div>
       <p className="h4_text">{props.text}</p>
     </div>
   );

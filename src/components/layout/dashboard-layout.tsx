@@ -18,14 +18,7 @@ interface Props {
 function DashboardLayout({ children }: Props) {
   const toggleSidebar = useSidebarToggleStore((state) => state.toggleSidebar);
   const isSidebarOpen = useSidebarToggleStore((state) => state.isSidebarOpen);
-  const { setTheme, theme } = useTheme();
-  //   useEffect(() => {
-  //     console.log(theme);
-  //     if (!theme) {
-  //       setTheme("light");
-  //     }
-  //   }, [theme]);
-
+  const { theme } = useTheme();
   return (
     <Box
       sx={{

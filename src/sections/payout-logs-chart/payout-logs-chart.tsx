@@ -8,14 +8,15 @@ import useApiClient from "@/utils/api/api";
 import useTransactionEndpoints from "@/utils/api/endpoints/transactions";
 
 import useTranslation from "next-translate/useTranslation";
-import AreaChart, {
-  ChartSeries,
-} from "@/components/charts/area-chart/area-chart";
+
 import useChartMappers from "@/utils/mappers/chart-mappers";
-import useStringFormatter from "@/utils/strings";
+import useStringFormatter from "@/utils/strings-formatter";
 import useQueryTransactionEndpoints from "@/utils/api/endpoints/querytransactions";
 import { useQuery } from "react-query";
 import LoadingIndicator from "@/components/loading-indicator/loading-indicator";
+import AreaChart, {
+  ChartSeries,
+} from "@/components/charts/line-graph/area-chart";
 
 function PayOutLogsChart() {
   const { t } = useTranslation("home");

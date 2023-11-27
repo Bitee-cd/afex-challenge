@@ -1,11 +1,5 @@
 import { PayoutLogsData } from "../api/types/transactions";
 
-interface InputDataItem {
-  date: string;
-  salary_paid: number;
-  cash_bond_bought: number;
-}
-
 const transformDate = (dateString: string): string => {
   const date = new Date(dateString);
   const options: Intl.DateTimeFormatOptions = {

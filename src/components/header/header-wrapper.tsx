@@ -1,11 +1,5 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import Sidebar from "../sidebar/sidebar";
 import Header from "../header/header";
-import { ThemeProvider } from "../theme-provider";
-import Head from "next/head";
-import SidebarDrawer, { drawerWidth } from "../sidebar-drawer/sidebar-drawer";
-import { useState } from "react";
+import { drawerWidth } from "../sidebar-drawer/sidebar-drawer";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import { useTheme } from "next-themes";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -22,8 +16,8 @@ function HeaderWrapper() {
       sx={{
         width: { md: `calc(100% - ${drawerWidth}px)` },
         ml: { md: `${drawerWidth}px` },
-        backgroundColor:
-          theme !== "dark" ? colors.bg_pri_light : colors.bg_pri_dark,
+        backgroundColor: theme !== "dark" ? colors.pri_100 : colors.bg_pri_dark,
+        boxShadow: "none",
       }}
     >
       <Toolbar>

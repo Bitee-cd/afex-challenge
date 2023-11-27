@@ -14,7 +14,7 @@ import TransactionIcon from "@/components/icon/TransactionIcon";
 import CardIcon from "@/components/icon/CardIcon";
 import useTranslation from "next-translate/useTranslation";
 import { colorMap } from "@/utils/text-color";
-import useStringFormatter from "@/utils/strings";
+import useStringFormatter from "@/utils/strings-formatter";
 import useQueryTransactionEndpoints from "@/utils/api/endpoints/querytransactions";
 import { useQuery } from "react-query";
 import LoadingIndicator from "@/components/loading-indicator/loading-indicator";

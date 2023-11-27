@@ -26,6 +26,32 @@ const areaChartOptions: ApexOptions = {
   grid: {
     strokeDashArray: 0,
   },
+  legend: {
+    show: true,
+    position: "top", // Change legend position (options: top, right, bottom, left)
+    horizontalAlign: "left", // Change horizontal alignment (options: left, center, right)
+    floating: false, // Make the legend floating
+    offsetY: 10, // Adjust the vertical offset
+    offsetX: 0, // Adjust the horizontal offset
+    itemMargin: {
+      horizontal: 10, // Adjust the horizontal margin between legend items
+      vertical: 5, // Adjust the vertical margin between legend items
+    },
+    fontSize: "16px", // Set the font size
+    // Set the font family
+    fontWeight: 400, // Set the font weight
+    // labels: {
+    //   colors: [colors.text_primary], // Set the color of legend labels
+    // },
+    markers: {
+      width: 15, // Set the width of legend markers
+      height: 15, // Set the height of legend markers
+      strokeWidth: 0, // Set the stroke width of legend markers
+      strokeColor: "#fff", // Set the stroke color of legend markers
+      radius: 6, // Set the radius of legend markers
+      customHTML: undefined, // Provide custom HTML for legend markers
+    },
+  },
 };
 
 export interface ChartSeries {
@@ -46,7 +72,7 @@ const AreaChart = ({ series, categories, formatter }: AreaChartProps) => {
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
-      colors: [colors.ter, colors.sec],
+      colors: [colors.sec, colors.ter],
       xaxis: {
         categories: categories,
         labels: {
@@ -74,6 +100,14 @@ const AreaChart = ({ series, categories, formatter }: AreaChartProps) => {
       },
       tooltip: {
         theme: theme === "dark" ? "dark" : "light",
+      },
+      legend: {
+        ...prevState.legend,
+        itemOrder: "reverse", // Set to "reverse" to reverse the order
+        // markers: {
+        //   ...prevState.legend.markers,
+        //   position: "right", // Set to "right" to place markers on the right side
+        // },
       },
     }));
   }, [theme]);

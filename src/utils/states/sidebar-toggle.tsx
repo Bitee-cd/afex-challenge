@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type SidebarState = {
+export type SidebarState = {
   isSidebarOpen: boolean;
   toggleSidebar: () => void;
 };
